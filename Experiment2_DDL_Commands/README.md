@@ -104,87 +104,175 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
+--
+Create a table named ProjectAssignments with the following constraints:
+AssignmentID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+ProjectID as INTEGER should be a foreign key referencing Projects(ProjectID).
+AssignmentDate as DATE should be NOT NULL.
 
-<img width="747" height="284" alt="image" src="https://github.com/user-attachments/assets/5452a861-cf5d-4ef1-bf73-713a91abd562" />
+```sql
+create table ProjectAssignments(
+   AssignmentID INT PRIMARY KEY,
+   EmployeeID INT, 
+   ProjectID INT,
+   AssignmentDate DATE NOT NULL,
+   FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID),
+   FOREIGN KEY(ProjectID) REFERENCES Projects(ProjectID)
+);
+```
 
 **Output:**
 
-<img width="828" height="652" alt="image" src="https://github.com/user-attachments/assets/82f4edbc-e582-4587-9103-8a4cf23a7ff2" />
+<img width="1104" height="165" alt="image" src="https://github.com/user-attachments/assets/c7a91da7-438e-4830-8056-199863caabde" />
 
 **Question 2**
-<img width="1096" height="602" alt="image" src="https://github.com/user-attachments/assets/a7251f0c-ea9d-4f1f-8cec-38845e4ff6a4" />
+---
+Write a SQL Query to add an attribute designation in the employee table with the data type VARCHAR(50).
+
+```sql
+ALTER TABLE employee
+ADD COLUMN designation varchar(50);
+```
 
 **Output:**
 
-<img width="1218" height="623" alt="image" src="https://github.com/user-attachments/assets/7be502ff-e5fc-4a69-9d82-d13c4a21c793" />
-
+<img width="1178" height="239" alt="image" src="https://github.com/user-attachments/assets/2af28a73-b8ae-4b36-8852-0ae13256ab2b" />
 
 **Question 3**
+---
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
 
-<img width="699" height="304" alt="image" src="https://github.com/user-attachments/assets/749f8d95-ac55-4a4e-9fef-783563dd6445" />
+```sql
+create table contacts(
+   contact_id INT PRIMARY KEY,
+   first_name TEXT NOT NULL, 
+   last_name TEXT NOT NULL,
+   email TEXT,
+   phone TEXT NOT NULL CHECK(length(phone)>=10)
+);
+```
 
 **Output:**
 
-<img width="1068" height="594" alt="image" src="https://github.com/user-attachments/assets/6f12548b-09a6-40ee-82a2-b16a94e57cc2" />
+<img width="1321" height="193" alt="image" src="https://github.com/user-attachments/assets/78fc2de0-e4d2-4ed1-a69f-21950a0355f6" />
 
 **Question 4**
-
-<img width="1233" height="303" alt="image" src="https://github.com/user-attachments/assets/3db86b45-d8f9-4bc2-8e1e-302645e6457c" />
+---
+Create a table named Orders with the following constraints:
+OrderID as INTEGER should be the primary key.
+OrderDate as DATE should be not NULL.
+CustomerID as INTEGER should be a foreign key referencing Customers(CustomerID).
+```sql
+create table Orders(
+   OrderID INT PRIMARY KEY,
+   OrderDate DATE NOT NULL, 
+   CustomerID INT,
+   FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID)
+);
+```
 
 **Output:**
 
-<img width="1106" height="552" alt="image" src="https://github.com/user-attachments/assets/611e9320-5328-44ec-93cd-ef9fc6a4d691" />
+<img width="1299" height="232" alt="image" src="https://github.com/user-attachments/assets/8e02b259-4a95-4850-8fd1-9e38d2ecc98a" />
 
 **Question 5**
+---
+Write a SQL query to add a new column MobileNumber of type NUMBER and a new column Address of type VARCHAR(100) to the Student_details table.
 
-<img width="1123" height="568" alt="image" src="https://github.com/user-attachments/assets/1b325997-d06f-4d62-ad07-ef614731d3cd" />
+```sql
+ALTER TABLE Student_details ADD  MobileNumber NUMBER;
+ALTER TABLE Student_details ADD Address VARCHAR(100);
+```
 
 **Output:**
 
-<img width="1123" height="568" alt="image" src="https://github.com/user-attachments/assets/1b325997-d06f-4d62-ad07-ef614731d3cd" />
+<img width="1209" height="290" alt="image" src="https://github.com/user-attachments/assets/f6f9ccdf-0df6-44a1-a80e-aba4c00eee04" />
 
 **Question 6**
+---
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
 
-<img width="959" height="253" alt="image" src="https://github.com/user-attachments/assets/c9d8aec1-3993-44b2-bb85-eede97ca77fb" />
+```sql
+create table  Products(
+   ProductID INT PRIMARY KEY,
+   ProductName TEXT NOT NULL UNIQUE, 
+   Price REAL NOT NULL CHECK(Price>0),
+   StockQuantity INT CHECK(StockQuantity>=0)
+);
+```
 
 **Output:**
 
-<img width="1152" height="410" alt="image" src="https://github.com/user-attachments/assets/666c21bc-b162-4615-b73f-63e45515430a" />
+<img width="1186" height="182" alt="image" src="https://github.com/user-attachments/assets/139ee50e-d91e-470d-b63e-3cc5ba0be5e9" />
 
 **Question 7**
+---
+Insert a book with ISBN 978-1234567890, Title Data Science Essentials, Author Jane Doe, Publisher TechBooks, and Year 2024 into the Books table.
 
-<img width="986" height="227" alt="image" src="https://github.com/user-attachments/assets/707f4659-400e-448a-85ba-39247fa52efc" />
+```sql
+INSERT INTO Books(ISBN,Title,Author,Publisher,Year) VALUES ("978-1234567890","Data Science Essentials","Jane Doe","TechBooks","2024");
+```
 
 **Output:**
 
-<img width="1288" height="555" alt="image" src="https://github.com/user-attachments/assets/3fcb4601-cff4-4344-af4d-219a8433ce3d" />
+<img width="1212" height="209" alt="image" src="https://github.com/user-attachments/assets/375f3455-9f04-4ce4-a920-72f5ee4e7bfa" />
 
 **Question 8**
+---
+Create a table named Departments with the following columns:
+DepartmentID as INTEGER
+DepartmentName as TEXT
 
-<img width="523" height="225" alt="image" src="https://github.com/user-attachments/assets/4d585749-a6c2-461a-9baf-af281e3c9438" />
+```sql
+CREATE TABLE Departments(
+  DepartmentID INTEGER,
+  DepartmentName TEXT
+);
+```
 
 **Output:**
 
-<img width="812" height="559" alt="image" src="https://github.com/user-attachments/assets/73960af6-439b-4def-bf37-dc8c47a7b8ae" />
+<img width="1226" height="275" alt="image" src="https://github.com/user-attachments/assets/647c2027-03f8-447a-a940-c03e2dfad4bc" />
 
 **Question 9**
+---
+In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
-<img width="626" height="229" alt="image" src="https://github.com/user-attachments/assets/092d2537-67ae-4ff3-8b91-b46470d8dff2" />
-
+```sql
+INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS) VALUES (205,"Olivia Green","F",NULL,NULL);
+INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS) VALUES (207,"Liam Smith","M","Mathematic",85);
+INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS) VALUES (208,"Sophia Johns","F","Science",NULL);
+```
 
 **Output:**
 
-<img width="992" height="543" alt="image" src="https://github.com/user-attachments/assets/735c1849-121b-4387-bd4d-8d0884540a65" />
+<img width="1141" height="230" alt="image" src="https://github.com/user-attachments/assets/2a71d5d0-a136-4f0f-aef3-2fd2c441a5cc" />
 
 **Question 10**
+---
+Insert all products from Discontinued_products into Products.
+Table attributes are ProductID, ProductName, Price, Stock
 
-<img width="631" height="268" alt="image" src="https://github.com/user-attachments/assets/f78d844d-39dc-4af5-95b8-f69f94ef84f8" />
-
+```sql
+INSERT INTO Products(ProductID,ProductName,Price,Stock)
+SELECT ProductID,ProductName,Price,Stock from Discontinued_products;
+```
 
 **Output:**
 
-<img width="1263" height="613" alt="image" src="https://github.com/user-attachments/assets/e8b5fb1a-3e15-482c-ae33-9fe630ae5df7" />
+<img width="904" height="233" alt="image" src="https://github.com/user-attachments/assets/4318f0fb-e903-4661-a100-02e8e106ecee" />
 
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3eb13c42-2aed-4d98-892e-e82fbd1bd55e" />
 
 
 ## RESULT
